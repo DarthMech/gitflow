@@ -1,0 +1,124 @@
+<idea-plugin version="2">
+  <name>Git flow</name>
+  <id>ru.rambler.plugins.gitflow</id>
+
+  <description><![CDATA[
+      Тут будет описание
+    ]]></description>
+
+  <version>0.0.1</version>
+  <category>VCS</category>
+
+  <change-notes><![CDATA[
+      Empty
+    ]]>
+  </change-notes>
+
+  <idea-version since-build="141.0"/>
+  <!--<idea-version since-build="162.0" until-build="162.*"/>-->
+
+  <depends>Git4Idea</depends>
+
+  <project-components>
+    <component>
+      <implementation-class>ru.rambler.plugins.gitflow.components.GitFlowComponent</implementation-class>
+    </component>
+  </project-components>
+
+  <extensions defaultExtensionNs="com.intellij">
+    <projectService serviceInterface="ru.rambler.plugins.gitflow.services.settings.GitFlowSettingsService"
+                    serviceImplementation="ru.rambler.plugins.gitflow.services.settings.GitFlowSettingsService"/>
+
+    <applicationService serviceInterface="ru.rambler.plugins.gitflow.services.gitcommands.ExpansionGit"
+                        serviceImplementation="ru.rambler.plugins.gitflow.services.gitcommands.ExpansionGitImpl"/>
+  </extensions>
+
+  <actions>
+    <action class="ru.rambler.plugins.gitflow.actions.start.StartReleaseAction"
+            id="gitflow.StartReleaseAction"
+            text="Start release"
+            description=""/>
+
+    <action class="ru.rambler.plugins.gitflow.actions.start.StartHotfixAction"
+            id="gitflow.StartHotfixAction"
+            text="Start hotfix"
+            description=""/>
+
+    <action class="ru.rambler.plugins.gitflow.actions.start.StartFeatureAction"
+            id="gitflow.StartFeatureAction"
+            text="Start feature"
+            description=""/>
+
+    <action class="ru.rambler.plugins.gitflow.actions.end.EndReleaseAction"
+            id="gitflow.EndReleaseAction"
+            text="End release"
+            description=""/>
+
+    <action class="ru.rambler.plugins.gitflow.actions.end.EndHotfixAction"
+            id="gitflow.EndHotfixAction"
+            text="End hotfix"
+            description=""/>
+
+    <action class="ru.rambler.plugins.gitflow.actions.end.EndFeatureAction"
+            id="gitflow.EndFeatureAction"
+            text="End feature"
+            description=""/>
+
+    <action class="ru.rambler.plugins.gitflow.actions.BuildNextRCAction"
+            id="gitflow.BuildNextRCAction"
+            text="Build next rc"
+            description="RC"/>
+
+    <action class="ru.rambler.plugins.gitflow.actions.TestBranchCreator"
+            id="gitflow.TestBranchCreator"
+            text="Test Test"
+            description="ttttest"/>
+
+    <group id="Gitflow.Actions">
+      <separator/>
+      <reference id="gitflow.TestBranchCreator"/>
+      <separator/>
+      <reference id="gitflow.StartFeatureAction"/>
+      <reference id="gitflow.EndFeatureAction"/>
+      <separator/>
+      <reference id="gitflow.StartReleaseAction"/>
+      <reference id="gitflow.EndReleaseAction"/>
+      <separator/>
+      <reference id="gitflow.StartHotfixAction"/>
+      <reference id="gitflow.EndHotfixAction"/>
+      <separator/>
+      <reference id="gitflow.BuildNextRCAction"/>
+    </group>
+
+    <action class="ru.rambler.plugins.gitflow.actions.SettingsAction"
+            id="gitflow.SettingsAction"
+            text="Gitflow settings"
+            description="Gitflow settings action"/>
+
+    <group id="Gitflow.Menu" popup="true" text="_Git flow">
+      <reference id="gitflow.SettingsAction"/>
+      <reference id="Gitflow.Actions"/>
+
+      <add-to-group group-id="Git.Menu" anchor="before" relative-to-action="GitRepositoryActions"/>
+    </group>
+
+    <group id="Gitflow.Separator" >
+      <separator/>
+      <add-to-group group-id="Git.Menu" anchor="after" relative-to-action="Gitflow.Menu"/>
+    </group>
+
+    <group id="Gitflow.ContextSeparator" >
+      <separator/>
+      <add-to-group group-id="Git.ContextMenu" anchor="last"/>
+    </group>
+
+    <group id="Gitflow.ContextMenu" popup="true" text="_Git flow">
+      <reference id="gitflow.SettingsAction"/>
+      <reference id="Gitflow.Actions"/>
+
+      <add-to-group group-id="Git.ContextMenu" anchor="last"/>
+    </group>
+
+  </actions>
+
+</idea-plugin>
