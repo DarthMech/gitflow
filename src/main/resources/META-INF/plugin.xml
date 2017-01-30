@@ -3,7 +3,7 @@
   <id>ru.rambler.plugins.gitflow</id>
 
   <description><![CDATA[
-      Тут будет описание
+      Empty
     ]]></description>
 
   <version>0.0.1</version>
@@ -69,14 +69,7 @@
             text="Build next rc"
             description="RC"/>
 
-    <action class="ru.rambler.plugins.gitflow.actions.TestBranchCreator"
-            id="gitflow.TestBranchCreator"
-            text="Test Test"
-            description="ttttest"/>
-
     <group id="Gitflow.Actions">
-      <separator/>
-      <reference id="gitflow.TestBranchCreator"/>
       <separator/>
       <reference id="gitflow.StartFeatureAction"/>
       <reference id="gitflow.EndFeatureAction"/>
