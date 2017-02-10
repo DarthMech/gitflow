@@ -90,10 +90,14 @@ public class PushNewRcTagView extends DialogWrapper {
     }
 
     public TagData getTagData() {
+
+        int index = branchesNamesComboBox.getSelectedIndex();
+        String releaseBranch = branchesNamesComboBox.getItemAt(index);
+
         return new TagData(commentTextField.getText().trim(),
                 expectedTagNameTextField.getText(),
                 pushTagCheckBox.isSelected(),
-                "dev");
+                releaseBranch);
     }
 
     public void setBranchesNames(List<String> namesList) {

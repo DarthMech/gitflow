@@ -36,4 +36,4 @@ dependencies {
 }
 
 group 'ru.rambler.plugins'
-version '0.5' // Plugin version
+version '0.6' // Plugin version

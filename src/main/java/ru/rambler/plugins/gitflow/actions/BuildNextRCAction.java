@@ -54,6 +54,12 @@ public class BuildNextRCAction extends GitFlowGitAction {
                         data.isPushTag(),
                         true,
                         null);
+
+                if (resultPushTag.success()) {
+                    showInfoMessage("Метка успешно создана", "Push tag", anActionEvent.getProject());
+                } else {
+                    showErrorMessage("Ошибка при создании метки", "Push tag", anActionEvent.getProject());
+                }
             }
         }
     }
