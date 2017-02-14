@@ -1,2 +1,2 @@
 # gitflow
-Плагин для Idea и Android Studio, реализующий gitflow.
+Плагин для Intellij Idea и Android Studio, реализующий gitflow.
