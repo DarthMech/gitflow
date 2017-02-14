@@ -52,7 +52,6 @@ public class BuildNextRCAction extends GitFlowGitAction {
                         data.getComment(),
                         null,
                         data.isPushTag(),
-                        true,
                         null);
             }
         }

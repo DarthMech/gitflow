@@ -106,7 +106,6 @@ public class EndReleaseAction extends AbstractEndAction {
                     null,
                     null,
                     data.isPushRemote(),
-                    true,
                     null);
 
             if (data.isDeleteBranch()) {
@@ -116,47 +115,4 @@ public class EndReleaseAction extends AbstractEndAction {
             showErrorMessage("Не получилось смержить релиз в мастер", "Ошибка мержа", project);
         }
     }
-
-//    public static void showEditorHint(final String info, final Editor editor) {
-//        final JLabel label = new JLabel(info);
-//        label.setBorder(BorderFactory.createCompoundBorder(
-//                BorderFactory.createBevelBorder(BevelBorder.RAISED, Color.WHITE, Gray._128),
-//                BorderFactory.createEmptyBorder(3, 5, 3, 5)));
-//        label.setForeground(JBColor.foreground());
-//        label.setBackground(HintUtil.INFORMATION_COLOR);
-//        label.setOpaque(true);
-//        label.setFont(label.getFont().deriveFont(Font.BOLD));
-//
-//        final LightweightHint h = new LightweightHint(label);
-//        final Point point = editor.visualPositionToXY(editor.getCaretModel().getVisualPosition());
-//        SwingUtilities.convertPointToScreen(point, editor.getContentComponent());
-//
-//        /* === HintManager API Info ===
-//
-//            public void showEditorHint(final LightweightHint hint,
-//                                        final Editor editor,
-//                                        Point p,
-//                                        int flags,
-//                                        int timeout,
-//                                        boolean reviveOnEditorChange)
-//
-//
-//            reviveOnEditorChange means hint should stay even if active editor have been changed. It's should rarely be true.
-//
-//            possible flags are:
-//                public static final int HIDE_BY_ESCAPE = 0x01;
-//                public static final int HIDE_BY_ANY_KEY = 0x02;
-//                public static final int HIDE_BY_LOOKUP_ITEM_CHANGE = 0x04;
-//                public static final int HIDE_BY_TEXT_CHANGE = 0x08;
-//                public static final int HIDE_BY_OTHER_HINT = 0x10;
-//                public static final int HIDE_BY_SCROLLING = 0x20;
-//                public static final int HIDE_IF_OUT_OF_EDITOR = 0x40;
-//                public static final int UPDATE_BY_SCROLLING = 0x80;
-//        */
-//        final int flags = HintManager.HIDE_BY_ANY_KEY | HintManager.HIDE_BY_SCROLLING;
-////        HintManagerImpl.getInstanceImpl().showEditorHint(h, editor, point, flags, 0, false);
-//        HintManagerImpl.getInstanceImpl().showErrorHint(editor, "sdfdsagfasd");
-//
-////        Notifications.Bus.notify();
-//    }
 }
