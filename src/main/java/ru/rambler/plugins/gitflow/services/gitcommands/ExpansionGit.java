@@ -21,7 +21,6 @@ public interface ExpansionGit extends Git {
                                 @Nullable String comment,
                                 @Nullable String startPoint,
                                 boolean pushTag,
-                                boolean updateTracking, // ?
                                 @Nullable GitLineHandlerListener... listeners);
 
     GitCommandResult createNewTag(@NotNull GitRepository repository,
@@ -33,7 +32,6 @@ public interface ExpansionGit extends Git {
     GitCommandResult pushTag(@NotNull GitRepository repository,
                              @NotNull String remote,
                              @NotNull String tagName,
-                             boolean updateTracking, // ?
                              @Nullable GitLineHandlerListener... listeners);
 
     GitCommandResult checkoutNewBranch(@NotNull GitRepository repository,
@@ -44,7 +42,7 @@ public interface ExpansionGit extends Git {
     GitCommandResult pushBranch(@NotNull GitRepository repository,
                                 @NotNull String remote,
                                 @NotNull String branchName,
-                                boolean updateTracking, // ?
+                                boolean updateTracking,
                                 @Nullable GitLineHandlerListener... listeners);
 
     GitCommandResult status(@NotNull GitRepository repository);

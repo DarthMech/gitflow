@@ -38,20 +38,20 @@ public abstract class AbstractStartAction extends GitFlowGitAction {
                 GitRepository repo = getRepo();
                 if (startBranch != null && !startBranch.isEmpty()) {
                     GitCommandResult getLastCommitRes = getGit().getLastCommitsForBranch(repo, startBranch, 1);
-                    System.out.println(getLastCommitRes);
 
                     if (getLastCommitRes.success() && !getLastCommitRes.getOutput().isEmpty()) {
                         startPoint = getLastCommitRes.getOutput().get(0).replace("\"", "");
                     }
 
+                    String fullCurrentBranchName = getBranchPrefix() + newBranchName;
                     GitCommandResult newBranchRes = getGit().checkoutNewBranch(repo,
-                            getBranchPrefix() + newBranchName,
+                            fullCurrentBranchName,
                             startPoint, null);
 
                     if (newBranchRes.success() && data.isPushBranch()) {
                         GitCommandResult pushBranchRes = getGit().pushBranch(repo,
                                 getSettings().getRepoName(),
-                                repo.getCurrentBranch().getName(),
+                                fullCurrentBranchName,
                                 true,
                                 null);
 

@@ -47,7 +47,7 @@ public abstract class AbstractEndAction extends GitFlowGitAction {
         GitCommandResult resultBranchPush = getGit().pushBranch(repo,
                 getSettings().getRepoName(),
                 branchName,
-                true,
+                false,
                 null);
 
         if (!resultBranchPush.success()) {

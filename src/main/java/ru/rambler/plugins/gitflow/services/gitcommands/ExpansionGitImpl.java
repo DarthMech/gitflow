@@ -25,8 +25,7 @@ public class ExpansionGitImpl extends GitImpl implements ExpansionGit {
 
     @NotNull
     @Override
-    public GitCommandResult getTags(@NotNull GitRepository repository,
-                                    @Nullable String regex) {
+    public GitCommandResult getTags(@NotNull GitRepository repository, @Nullable String regex) {
         final GitLineHandler h = new GitLineHandler(repository.getProject(), repository.getRoot(), GitCommand.TAG);
 
         if (regex != null && !regex.isEmpty()) {
@@ -44,7 +43,6 @@ public class ExpansionGitImpl extends GitImpl implements ExpansionGit {
                                        @Nullable String comment,
                                        @Nullable String startPoint,
                                        boolean pushTag,
-                                       boolean updateTracking,
                                        @Nullable GitLineHandlerListener... listeners) {
         GitCommandResult resultAddTag = createNewTag(repository,
                 tagName,
@@ -56,7 +54,6 @@ public class ExpansionGitImpl extends GitImpl implements ExpansionGit {
             GitCommandResult resultPushTag = pushTag(repository,
                     remote,
                     tagName,
-                    updateTracking,
                     listeners);
 
             return resultPushTag;
@@ -97,7 +94,6 @@ public class ExpansionGitImpl extends GitImpl implements ExpansionGit {
      * @param repository
      * @param remote
      * @param tagName
-     * @param updateTracking
      * @param listeners
      * @return
      */
@@ -106,7 +102,6 @@ public class ExpansionGitImpl extends GitImpl implements ExpansionGit {
     public GitCommandResult pushTag(@NotNull GitRepository repository,
                                     @NotNull String remote,
                                     @NotNull String tagName,
-                                    boolean updateTracking,
                                     @Nullable GitLineHandlerListener... listeners) {
         final GitLineHandler h = new GitLineHandler(repository.getProject(), repository.getRoot(), GitCommand.PUSH);
         h.addParameters(remote);
@@ -138,11 +133,15 @@ public class ExpansionGitImpl extends GitImpl implements ExpansionGit {
     public GitCommandResult pushBranch(@NotNull GitRepository repository,
                                        @NotNull String remote,
                                        @NotNull String branchName,
-                                       boolean updateTracking, // ?
+                                       boolean updateTracking,
                                        @Nullable GitLineHandlerListener... listeners) {
         final GitLineHandler h = new GitLineHandler(repository.getProject(), repository.getRoot(), GitCommand.PUSH);
+
         h.addParameters(remote);
         h.addParameters(branchName);
+        if (updateTracking) {
+            h.addParameters("--set-upstream");
+        }
 
         return runCommand(h);
     }
@@ -162,7 +161,6 @@ public class ExpansionGitImpl extends GitImpl implements ExpansionGit {
         String logString = remote + "/" + branchName + ".." + branchName;
 
         h.addParameters(logString);
-        //h.addParameters(branchName);
 
         return runCommand(h);
     }
